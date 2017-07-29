@@ -1,7 +1,7 @@
 <?php
 
 /**
- * For 100% of what we need to do at the moment (manage our quotes on on 
+ * For 100% of what we need to do at the moment (manage our quotes on 
  * our local network,) this class will do what we need it to do: CRUD a 
  * row consisting of TEXT / string values!
  * 
@@ -14,9 +14,11 @@
  * get_table_name() [optional]
  * get_file_name() [optional]
  * 
- * Then simply use associative arrays as you "data access object" - as returned
+ * Then simply use associative arrays as your "data access object" - as returned
  * from the read($id) operation - access via your own get_columns() names - and 
- * (ahem) CRUD happens!
+ * (ahem) CRUD happens.
+ * 
+ * See the test case (below) for a decent example.
  * 
  */
 class SqlStringRecord {
@@ -160,6 +162,10 @@ class SqlStringRecord {
     }
 
 }
+
+/*
+ * THE BASIC TEST CASE
+ */
 
 $dao = new SqlStringRecord();
 $dao->create_table();
