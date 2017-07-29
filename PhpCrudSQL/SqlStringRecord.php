@@ -1,24 +1,40 @@
 <?php
 
-/**
- * For 100% of what we need to do at the moment (manage our quotes on 
+/** Created 2017/07/29 - Happy Saturday.
+ * 
+ * For 100% of what we need to do at the moment (manage our data on 
  * our local network,) this class will do what we need it to do: CRUD a 
  * row consisting of TEXT / string values!
  * 
- * So, is DAO-generation necessary? When using a name-associated array, all 
- * we need do is to define our fields, and away we go!
+ * So, is DAO-generation necessary in Modern PHP? 
  * 
- * So feel free to update:
+ * When using a name-associated / indexed array, all we need do is to 
+ * define our fields, and away we go!
+ * 
+ * Hence, feel free to update:
  * 
  * get_columns()
  * get_table_name() [optional]
- * get_file_name() [optional]
+ * get_file_name()  [optional]
  * 
- * Then simply use associative arrays as your "data access object" - as returned
- * from the read($id) operation - access via your own get_columns() names - and 
- * (ahem) CRUD happens.
+ * Then simply:
  * 
- * See the test case (below) for a decent example.
+ * (1) Use associative arrays as your "data access object" (as demonstrated 
+ * &amp; returned from the read($id) operation.)
+ * 
+ * (2) Access results via your own get_columns() names -
+ * 
+ * (3) to (ahem) see how easy it be to make CRUD happen!
+ * 
+ * Finally, if your are unfamiliar with how to use associative arrays, then 
+ * see the test case (below) for a decent, demonstrative, example.
+ * 
+ * 
+ * Sharing is Caring!
+ * 
+ * Randall Nagy
+ * President, Soft9000.com
+ * 
  * 
  */
 class SqlStringRecord {
@@ -170,7 +186,8 @@ class SqlStringRecord {
 $dao = new SqlStringRecord();
 $dao->create_table();
 if ($dao->create_table() == FALSE) {
-    echo "Unable to create $dao->get_table_name()";
+    $table = $dao->get_table_name();
+    echo "Unable to create table $table\n";
     exit(-1);
 }
 
@@ -178,14 +195,14 @@ $special = array("Name" => "Randall Nagy", "Address" => "soft9000.com", "Note" =
 $which = $dao->create($special);
 if ($which == FALSE) {
     $table = $dao->get_table_name();
-    echo "Unable to add data to $table";
+    echo "Unable to add data to $table\n";
     exit(-1);
 }
 
 $row = $dao->read($which);
 if ($row == FALSE) {
     $table = $dao->get_table_name();
-    echo "Unable to read data #$which from $table";
+    echo "Unable to read data #$which from $table\n";
     exit(-1);
 }
 
@@ -199,7 +216,7 @@ foreach ($dao->get_columns() as $col) {
 
 if ($dao->update($which, $row) == FALSE) {
     $table = $dao->get_table_name();
-    echo "Unable to UPDATE data #$which from $table";
+    echo "Unable to UPDATE data #$which from $table\n";
     exit(-1);
 }
 
@@ -209,19 +226,19 @@ foreach ($dao->get_columns() as $col) {
 
 if ($dao->count() != 1) {
     $table = $dao->get_table_name();
-    echo "Unable to STAT data #$which from $table";
+    echo "Unable to STAT data #$which from $table\n";
     exit(-1);
 }
 
 if ($dao->delete($which) == FALSE) {
     $table = $dao->get_table_name();
-    echo "Unable to DELETE data #$which from $table";
+    echo "Unable to DELETE data #$which from $table\n";
     exit(-1);
 }
 
 if ($dao->count() != 0) {
     $table = $dao->get_table_name();
-    echo "Unable to STAT data #$which from $table";
+    echo "Unable to STAT data #$which from $table\n";
     exit(-1);
 }
 
